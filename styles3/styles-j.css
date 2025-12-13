@@ -1,0 +1,1173 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+/* Color Pallettes SECTION ---------------------------------------------------------------*/
+/* Light Mode */
+:root {
+  --color-background: #f0ede2;
+  --color-text-back: #ffffff;
+  --border-color:#e9e8e4;
+  --color-caption:#ffffff;
+
+
+  --color-primary: #ffffff;
+  --color-secondary: #000000;
+  --color-tertiary:#03853e;
+  --color-cont1:#0d293a;
+
+  --color-creative:#fc6719;
+  --color-service:#a40930;
+  --color-action:#1260ae;
+
+  --color-greytext:#666666;
+  --color-greylite:#aaaaaa;
+
+  --color-img-shadow: rgba(255, 255, 255, 0.4);
+  --box-shadow-1: 0 3px 15px rgba(0,0,0,.3) ;
+  --blog-fade:rgba(255, 255, 255, 0.5);
+
+  --color-pop-back:rgb(255 255 255 / 90%);;
+  --color-popup-text:rgb(0, 0, 0);
+}
+/* Dark Mode */
+.dark-mode {
+  --color-background: #000000;
+  --color-text-back: #1b1f23;
+  --border-color:#111111;
+  --color-caption:#ffffff;
+
+  --color-primary: #1b1f23;
+  --color-secondary: #ffffff;
+  --color-tertiary: #40c99e;
+  --color-cont1:#454545;
+
+  --color-creative:#f8b82d;
+  --color-service:#f95d54;
+  --color-action:#5eb4fa;
+
+  --color-greytext:#9f9f9f;
+  --color-greylite:#9f9f9f;
+
+  --blog-fade:rgba(255, 255, 255, 0.5);
+  --color-img-shadow: rgba(0, 0, 0, 0.8);
+  --box-shadow-1: 0 3px 15px rgba(0,0,0,.3) ;
+
+  --color-pop-back:rgb(29 29 29 / 90%);
+  --color-popup-text:rgb(255, 255, 255);
+}
+/*/------- Main overall html formatting --------------------------------------------------------------------------------------/*/
+
+body {
+  background-color: var(--color-background);
+  font-family: "Public Sans", sans-serif;
+  font-size: 1.1rem;
+  color: var(--color-body);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+}
+header {
+  min-height: 100vh;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  
+}
+section {
+  min-height: 100vh;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  padding-top: 1rem 13rem;
+  transition: all 0.5s ease-in-out;
+
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+section.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+html { scroll-behavior: smooth; } 
+.container {
+  /* display: none;
+  transform: translateY(-100%) scale(0);
+  transition: all 1s ease-in-out;*/
+  background-color: var(--color-primary);
+  opacity: 0;
+  transform: scale(1);
+  transition: all 0.5s ease-in-out;
+}
+
+
+.active {
+  -webkit-animation: appear 1.2s ease-in-out;
+          animation: appear 1.2s ease-in-out;
+  transform: translateX(0) scaleY(1);
+}
+@-webkit-keyframes appear {
+  0% {
+    transform: translateY(5%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+}
+@keyframes appear {
+  0% {
+    transform: translateY(5%) scaleY(1);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+}
+/* ---------- Navigation buttons seciton ------------------- */
+
+.controls {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  right: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transform: translateY(-50%);
+
+}
+
+.controls .control {
+  padding: 1rem;
+  cursor: pointer;
+  background-color: var(--color-cont1);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.7rem 0;
+  box-shadow: var(--box-shadow-1);
+  transition: all 0.5s ease-in-out;
+
+}
+
+.controls .control:active{
+  transform: translateY(-5px);
+}
+
+.controls .control i {
+  font-size: 1.2rem;
+  color: var(--color-greylite);
+  pointer-events: none;
+}
+.controls .active-btn {
+  background-color: var(--color-tertiary);
+  transition: all 0.5s ease-in-out;
+}
+
+.controls .active-btn.creative {
+  background-color: var(--color-creative);
+  transition: all 0.5s ease-in-out;
+}
+.controls .active-btn.action {
+  background-color: var(--color-action);
+  transition: all 0.5s ease-in-out;
+}
+.controls .active-btn.service {
+  background-color: var(--color-service);
+  transition: all 0.5s ease-in-out;
+}
+
+
+
+
+.controls .active-btn i {
+  color: var(--color-text-back);
+}
+
+.controls .control.active-c {
+  background-color: var(--color-creative); 
+}
+.controls .control.active-a {
+  background-color: var(--color-action); 
+}
+
+.controls .control.active-s {
+  background-color: var(--color-service); 
+}
+/* ---------- Navigation buttons seciton ------------------- */
+
+
+/* --------- Light/Dark Mode button seciton ---------------- */
+.theme-btn {
+  top: 5%;
+  right: 3%;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: var(--color-tertiary);
+  cursor: pointer;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--box-shadow-1);
+  transition: all 0.5s ease-in-out;
+}
+
+.theme-btn:active {
+  transform: translateY(-5px);
+  transition: all 0.5s ease-in-out;
+}
+/* Light/Dark Mode icon */
+.theme-btn i {
+  font-size: 1.4rem;
+  color: var(--color-text-back);
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.show {
+  display: block;
+}
+
+
+/* Header Content on Home Page SECTION ---------------------------------------------------------------*/
+
+/* This splits the page into a grid of two columns*/
+.all-container {
+  margin-top: 1rem;
+  margin-right: 10rem;
+  margin-left: 7rem;
+  margin-bottom: 3rem;
+
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* This is the left container for the page. 
+It stays on the left because this container comes first in the "grid" container that it exists in */ 
+.header-container .header-item {
+  align-items: center;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+/* This is the cover shape on the top side. It's not visible right now but it allows for the option to edit the 
+image size on the page more easily as well as change the design if you want to change it to a plain color shape design. */ 
+.header-container .header-item .image-container {
+  width: 100%;
+  height: 300px;
+  background-color: none;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.5s ease-in-out;
+
+}
+
+/* This is image which goes over the cover shape. 
+Can cover the whole shape as it is now or be separated. */ 
+.header-container .header-item .image-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+/* This is the caption over the picture on the homepage*/
+.header-container .header-item .image-container figcaption {
+position: absolute; 
+bottom: 0rem; 
+left: 0;
+width: 100%; 
+padding: 5px;
+text-align: right;
+color: var(--color-caption);
+/* background: rgba(255, 255, 255, 0.405);*/
+font-size: 0.7rem;
+transition: all 0.5s ease-in-out;
+}
+ 
+.header-container .text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--color-text-back);
+  border-color: var(--border-color);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position:relative;
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease-in-out;
+
+}
+
+.header-container .text-container .text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--color-text-back);
+  border-color: var(--border-color);
+  margin: 2rem;
+  position:relative;
+  transition: all 0.5s ease-in-out;
+}
+
+.header-container .text-container .text-box .title {
+  font-size: 3rem;
+  color: var(--color-secondary);
+  transition: all 0.5s ease-in-out;
+}
+
+.header-container .text-container .title .name {
+  color: var(--color-tertiary);
+  transition: all 0.5s ease-in-out;
+}
+.header-container .text-container .title .C {
+  color: var(--color-creative);
+}
+.header-container .text-container .title .A {
+  color: var(--color-action);
+}
+.header-container .text-container .title .S {
+  color: var(--color-service);
+}
+
+.header-container .text-container p {
+  line-height: 2rem;
+  color: var(--color-greytext);
+  transition: all 0.5s ease-in-out;
+  .C {
+    color: var(--color-creative);
+    font-weight: 900;
+  }
+  .A {
+    color: var(--color-action);
+    font-weight: 900;
+  }
+  .S {
+    color: var(--color-service);
+    font-weight: 900;
+  }
+}
+
+/* ---------------------- The CAS items Container and Section ----------------------- */
+
+.cas-cont{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cas-cont .cas-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 10px;
+  background-color: var(--color-text-back);
+  position:relative;
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  
+}
+
+.cas-cont .cas-item.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.cas-cont .cas-item.hidden.set-none {
+  display: none;
+}
+
+
+.cas-cont .cas-item .cas-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 10px;
+  background-color: var(--color-text-back);
+  position:relative;
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  opacity: 1;
+  transform: scale(1);
+  height: 100%;
+}
+
+/* POP UP CONT*/
+.popup{
+  visibility: hidden;
+  width: 90%;
+  height: auto;
+  background-color: var(--color-pop-back);
+  border-radius: 6px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  position: fixed;
+  z-index: 1000;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  border-radius: 18px;
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+  justify-content: flex-start;
+
+}
+
+ .popup::after {
+  content: "";
+  position: relative;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+
+
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  z-index: 900;
+}
+
+.popup.show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: popupFade 0.3s ease forwards;
+  transform: translate(-50%, -50%) scale(1); /* optional scale for fade/zoom */
+  opacity: 1;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+@keyframes popupFade {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.popup .close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-greytext);
+}
+
+.popup .popup-header{
+  font-size: 2rem;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.popup .popup-header p{
+  font-size: 1rem;
+  color: var(--color-popup-text);
+  text-align: justify;
+  line-height: 1.5rem;
+  margin-top: 0.5rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+
+}
+.popup .popup-header.creative h2{
+  color:var(--color-creative)
+}
+.popup .popup-header.service h2{
+  color:var(--color-service)
+}
+.popup .popup-header.action h2{
+  color:var(--color-action)
+}
+.popup .popup-header.all h2{
+  color:var(--color-tertiary)
+}
+
+.popup .popup-text{
+  justify-content: flex-start;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  text-align: left;
+}
+
+.popup .popup-text p{
+  font-size: 1rem;
+  color: var(--color-greytext);
+  text-align: justify;
+  line-height: 1.5rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+/*CAROUSEL*/
+
+.carousel-cont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-cont .carousel {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-cont .carousel .carousel-img-cont.portrait{
+  width: auto;  
+  height:65%;  
+  margin:auto;   
+  border-radius: 10px;  
+  overflow: hidden; 
+  justify-content: center;
+  align-items: center;
+  max-width:38%; 
+}
+
+.carousel-cont .carousel .carousel-img-cont.landscape{
+  width: 70%;  
+  height:auto;         
+  margin:auto;   
+  border-radius: 10px;  
+  overflow: hidden; 
+  justify-content: center;
+  align-items: center;
+  max-width:70%;     
+  max-height: 100%;
+}
+
+
+
+
+.carousel-cont .carousel img {
+    /* shows whole image with no cropping */
+  display: none;
+  border-radius: inherit;   
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
+.carousel-cont .carousel img.active {
+  display: block;
+}
+
+.carousel video {
+  width: 100%;
+  height: auto;
+  max-height: 535px;
+  display: none;
+  border-radius: 10px;
+  object-fit: contain;
+}
+.carousel video.active {
+  display: block;
+}
+.carousel video.portrait {
+max-height: 720px;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel iframe {
+  width: 70%;
+  height: auto;
+  display: none;
+  border-radius: 10px;
+  object-fit: contain;
+  justify-self: center;
+}
+.carousel iframe.active {
+  display: block;
+}
+
+
+/* Buttons */
+.carousel-cont .carousel .prev,
+.carousel-cont .carousel .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+
+.carousel-cont .carousel .prev { left: 0%; }
+.carousel-cont .carousel .next { right: 0%; }
+
+
+.cas-cont .cas-item.creative:hover{
+  border-radius: 18px;
+  outline: 6px solid var(--color-creative); /* Define the border width and style */
+  transition: 0.5s ease;
+}
+
+.cas-cont .cas-item.action:hover{
+  border-radius: 18px;
+  outline: 6px solid var(--color-action); /* Define the border width and style */
+  transition: 0.5s ease;
+}
+.cas-cont .cas-item.service:hover{
+  border-radius: 18px;
+  outline: 6px solid var(--color-service); /* Define the border width and style */
+  transition: 0.5s ease;
+}
+.cas-cont .cas-item.all:hover{
+  border-radius: 18px;
+  outline: 6px solid var(--color-tertiary) !important; /* Define the border width and style */
+  transition: 0.5s ease;
+}
+
+
+
+.cas-cont .cas-item.landscape {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.cas-cont .cas-item.portrait {
+  grid-column: span 1;
+  grid-row: span 2; /* Makes the box span two rows */
+}
+
+
+
+.cas-cont .cas-item.creative .cas-box .text-container .text-box .title { 
+  color: var(--color-creative);
+}
+.cas-cont .cas-item.action .cas-box .text-container .text-box .title {
+  color: var(--color-action);
+}
+.cas-cont .cas-item.service .cas-box .text-container .text-box .title {
+  color: var(--color-service);
+}
+.cas-cont .cas-item.all .cas-box .text-container .text-box .title {
+  color: var(--color-tertiary);
+}
+
+
+
+.cas-cont .cas-item .cas-box .image-container {
+  width: 100%;
+  height: 100%;
+  background-color: none;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+/* This is image which goes over the cover shape. 
+Can cover the whole shape as it is now or be separated. */ 
+.cas-cont .cas-item .cas-box .image-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+/* This is the caption over the picture on the homepage*/
+.cas-cont .cas-item .cas-box .image-container figcaption {
+position: absolute; 
+bottom: 0rem; 
+left: 0;
+width: 100%; 
+padding: 5px;
+text-align: right;
+color: var(--color-caption);
+/* background: rgba(255, 255, 255, 0.405);*/
+font-size: 0.7rem;
+transition: all 0.5s ease-in-out;
+}
+ 
+.cas-cont .cas-item .cas-box .text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--color-text-back);
+  border-color: var(--border-color);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position:relative;
+  box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease-in-out;
+
+}
+
+.cas-cont .cas-item .cas-box .text-container .text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem;
+  position:relative;
+  transition: all 0.5s ease-in-out;
+}
+
+.cas-cont .cas-item .cas-box .text-container .text-box .title {
+  font-size: 2rem;
+  color: var(--color-secondary);
+  transition: all 0.5s ease-in-out;
+}
+
+
+
+.cas-cont .cas-item .cas-box .text-container p {
+  line-height: 1.5rem;
+  color: var(--color-greytext);
+  transition: all 0.5s ease-in-out;
+  .C {
+    color: var(--color-creative);
+    font-weight: 900;
+  }
+  .A {
+    color: var(--color-action);
+    font-weight: 900;
+  }
+  .S {
+    color: var(--color-service);
+    font-weight: 900;
+  }
+}
+
+
+/* Modal Overlay ----------------------------------------------------------- */
+.cas-cont .cas-box .box-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-img-shadow);  /* Semi-transparent background */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px); /* Background blur effect */
+  -o-object-fit: cover;
+  object-fit: cover;
+  
+}
+/* When the modal is visible */
+.cas-cont .cas-box .box-overlay.active {
+  display: flex;
+}
+
+/* Modal Content */
+.cas-cont .cas-box .box-overlay .overlay-con {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position:relative;
+  transition: all 0.5s ease-in-out;
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+/* Gallery Styles */
+.cas-cont .cas-box .box-overlay .overlay-con .gallery {
+  display: grid;
+  grid-template-columns:repeat(1fr,3fr);
+  justify-content: space-around;
+  gap: 1rem;
+  margin: 2rem;
+}
+
+.cas-cont .cas-box .box-overlay .overlay-con .gallery .o-image, .o-video {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  border-radius: 10px;
+  display: none; /* Hide images by default */
+  object-fit: cover;
+  margin: 1rem;
+}
+
+.cas-cont .cas-box .box-overlay .overlay-con .gallery .o-image.active, .o-video.active {
+  display: block; /* Show active image/video */
+}
+
+/* -------- Overlay - Next and Previous Buttons -------- */
+.cas-cont .cas-box .box-overlay .overlay-con .gallery .prev-btn {
+  position: absolute;
+  top: 41%;
+  left: -2.5%;
+  border-radius: 50%;
+  padding: 1rem;
+  z-index: 999;
+
+}
+.cas-cont .cas-box .box-overlay .overlay-con .gallery .prev-btn i {
+  font-size: 1.2rem;
+  color: var(--color-text-back);
+  display: flex;
+  border-radius: 50%;
+  padding: 1rem;
+  z-index: 1000;
+  position: absolute;
+
+}
+
+.cas-cont .cas-box .box-overlay .overlay-con .gallery .slider-container {
+  display: flex;
+
+}
+.cas-cont .cas-box .box-overlay .overlay-con .gallery .next-btn {
+  position: absolute;
+  top: 41%;
+  left:97.5%;
+}
+.cas-cont .cas-box .box-overlay .overlay-con .gallery .next-btn i {
+  font-size: 1.2rem;
+  color: var(--color-text-back);
+  display: flex;
+  border-radius: 50%;
+  padding: 1rem;
+  z-index: 1000;
+  position: absolute;
+  
+}
+
+/* alternate button colors */
+.cas-cont .cas-box.creative .box-overlay .overlay-con .gallery .prev-btn i {
+  background: var(--color-creative);
+}
+.cas-cont .cas-box.action .box-overlay .overlay-con .gallery .prev-btn i {
+  background: var(--color-action);
+}
+.cas-cont .cas-box.service .box-overlay .overlay-con .gallery .prev-btn i {
+  background: var(--color-service);
+}
+.cas-cont .cas-box.all .box-overlay .overlay-con .gallery .prev-btn i {
+  background: var(--color-all) !important;
+}
+.cas-cont .cas-box.creative .box-overlay .overlay-con .gallery .next-btn i {
+  background: var(--color-creative);
+}
+.cas-cont .cas-box.action .box-overlay .overlay-con .gallery .next-btn i {
+  background: var(--color-action);
+}
+.cas-cont .cas-box.service .box-overlay .overlay-con .gallery .next-btn i {
+  background: var(--color-service);
+}
+.cas-cont .cas-box.all .box-overlay .overlay-con .gallery .next-btn i {
+  background: var(--color-all) !important;
+}
+/* -------- ------------------------- -------- */
+
+
+
+
+/* -------- Overlay - Text Container -------- */
+.cas-cont .cas-box .box-overlay .overlay-con .text-overlay {
+  margin: 1rem;
+  background-color: var(--color-text-back);
+  padding: 1rem;
+  border-radius: 10px;
+}
+.cas-cont .cas-box .box-overlay .overlay-con .text-overlay h3 {
+  font-size: 2rem;
+}
+.cas-cont .cas-box.creative .box-overlay .overlay-con .text-overlay h3 {
+  color: var(--color-creative);
+}
+.cas-cont .cas-box.action .box-overlay .overlay-con .text-overlay h3 {
+  color: var(--color-action);
+}
+.cas-cont .cas-box.service .box-overlay .overlay-con .text-overlay h3 {
+  color: var(--color-service);
+}
+.cas-cont .cas-box.all .box-overlay .overlay-con .text-overlay h3 {
+  color: var(--color-all) !important;
+}
+.cas-cont .cas-box .box-overlay .overlay-con .text-overlay p {
+  line-height: 2rem;
+  color: var(--color-greytext);
+  transition: all 0.5s ease-in-out;
+  .C {
+    color: var(--color-creative);
+    font-weight: 900;
+  }
+  .A {
+    color: var(--color-action);
+    font-weight: 900;
+  }
+  .S {
+    color: var(--color-service);
+    font-weight: 900;
+  }
+}
+/* -------- ------------------------- -------- */
+
+
+/* Close button */
+.cas-cont .cas-box .box-overlay .overlay-con .close-btn {
+  position: flex;
+  font-size: 30px;
+  cursor: pointer;
+  justify-content: right;
+}
+
+.cas-cont .cas-box .box-overlay .overlay-con .close-btn i {
+  font-size: 1.4rem;
+  color: var(--color-text-back);
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+
+
+
+
+
+
+/*-----------------------------------------------------------*/
+
+/*Independent Components*/
+.text-container .btn-con {
+  display: flex;
+  align-self: flex-start;
+
+}
+
+/* The resume download button text before you hover over it */
+.text-container .main-btn {
+  border-radius: 40px;
+  color: inherit;
+  font-weight: 600;
+  position: relative;
+  border: 3px solid var(--color-tertiary);
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+/* Text of resume button BEFORE you hover over it */
+.text-container .main-btn .btn-text {
+  padding: 0 2rem;
+  color: var(--color-tertiary);
+}
+
+.text-container .main-btn .btn-icon {
+  background-color: var(--color-tertiary);
+  color: var(--color-text-back);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 1rem;
+}
+
+.text-container .main-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  transition: all 0.4s ease-out;
+  z-index: -1;
+}
+
+/* Resume download button text AFTER you hover over it */
+.text-container .main-btn:hover .btn-text { 
+  padding: 0 2rem;
+  color: var(--color-text-back);
+}
+
+.text-container .main-btn:hover {
+  transition: all 0.4s ease-out;
+  background-color: var(--color-tertiary);
+}
+
+.text-container .main-btn:hover::before {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-text-back);
+  transform: translateX(0);
+  transition: all 0.4s ease-out;
+}
+
+
+
+@media screen and (max-width: 1370px) {
+
+
+  .carousel-cont .carousel .carousel-img-cont.portrait{
+    max-width:100%; 
+    max-height: 100%;
+  }
+  
+  .carousel-cont .carousel .carousel-img-cont.landscape{   
+    max-width:100%; 
+    max-height: 100%;
+  }
+}
+
+
+@media screen and (max-width: 1070px) {
+
+}
+
+/* ------------------------ MAX WIDTH 970 PX ------------------------ */
+
+
+@media screen and (max-width: 970px) {
+
+  .all-container {
+    margin-top: 5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .carousel-img-cont.portrait {
+    width: 100%;
+    height: 100%;
+  }
+  .carousel-img-cont.landscape {
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-cont .carousel{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+
+  .theme-btn {
+    width: 50px;
+    height: 50px;
+  }
+  .header-content {
+    grid-template-columns: 1fr;
+    padding-bottom: 6rem;
+  }
+
+  /* flips the buttons to the top of the screen, removing this for now*/
+  .controls {
+    top: 0;
+    bottom: auto;
+    flex-direction: row;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: var(--color-img-shadow);
+    z-index: 100;
+  }
+  .controls .control {
+    margin: 1rem 1rem;
+    z-index: 100;
+    
+  }
+
+  .theme-btn{
+    top: 2%;
+    right: 3%;
+    z-index: 101;
+  }
+
+}
+
+@media screen and (max-width: 900px) {
+
+  .cas-cont {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns:auto;
+  }
+
+}
+
+
+@media screen and (max-width: 740px) {
+
+  .theme-btn{
+    top: 92%;
+    right: 3%;
+    z-index: 101;
+  }
+  .cas-cont {
+    display: block;
+  }
+  .cas-item {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+
